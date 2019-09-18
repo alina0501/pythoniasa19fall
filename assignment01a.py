@@ -9,16 +9,14 @@ main_data = [[' ', 'farmer sowing his corn'],
              ['killed', 'rat'],
              ['ate', 'malt'],
              ['lay in', 'house that Jack built.']]
-i = 10; couplet = ''
+couplet = ''
 
-for lines in main_data:
-    if i <= 8:
-        F'This is the {main_data[i][1]}, '
-        print (couplet)
-        i -= 1
-        couplet = 'That ' + main_data[i + 1][0] + ' the ' + main_data[i + 1][1] + ',\n' + couplet
+for i in range(len(main_data)):
+    if i >= 2:
+        F'This is the {main_data[-i-1][1]}, '
+        print(couplet)
+        couplet = 'That ' + main_data[-i-1][0] + ' the ' + main_data[-i-1][1] + ',\n' + couplet
     else:
-        F'This is the {main_data[i][1]} '
-        print (couplet)
-        i -= 1
-        couplet = 'That ' + main_data[ i + 1 ][ 0 ]+ ' the ' + main_data[ i + 1 ][ 1 ] + '\n' + couplet
+        F'This is the {main_data[-i-1][1]} '
+        print(couplet)
+        couplet = 'That ' + main_data[-i-1][0] + ' the ' + main_data[-i-1][1] + '\n' + couplet
