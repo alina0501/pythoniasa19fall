@@ -1,11 +1,14 @@
 
-def task1():
+def task1(first, last, func):
     """
     Write a program which will find all such numbers which are divisible by 7 but are not a multiple of 5,
     between 2000 and 3200 (both included). The numbers obtained should be printed in a comma-separated sequence
     on a single line.
     """
-    # todo: write your code here
+
+    print(','.join(str(i) for i in range(first, last + 1) if func(i)))
+
+task1(2000, 3200, lambda i: i % 7 == 0 and i % 5 != 0)
 
 
 def task2(rows, cols):
@@ -20,7 +23,9 @@ def task2(rows, cols):
     >>> task2(3, 5)
     [[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8]]
     """
-    # todo: write your code here
+    return [[i * j for i in range(cols)] for j in range(rows)]
+
+print(task2(3, 5))
 
 
 def task3(password):
@@ -51,7 +56,12 @@ def task3(password):
     >>> task3('2We3345')
     False
     """
-    # todo: write your code here
+    return (any('a' <= s <= 'z' for s in password) and
+            any('A' <= s <= 'Z' for s in password) and
+            any(s in '#&@' for s in password) and
+            any('0' <= s <= '9' for s in password) and
+            6 <= len(password) <= 12)
+
 
 
 def task4():
@@ -59,7 +69,14 @@ def task4():
     Write password generator function that uses the same rules as in Task 3.
     The password generator function must be able to generate all possible correct passwords.
     """
-    # todo: write your code here
+    password_length = random.randint(6, 12)
+    password = f'{random.choice(string.ascii_lowercase)}{random.choice(string.ascii_uppercase)}{random.choice(string.digits)}{random.choice("#&@")}'
+    password += ''.join(random.sample(string.printable, password_length - 4))
+    return ''.join(random.sample(password, password_length))
+
+import random
+import string
+print(task4())
 
 
 if __name__ == '__main__':
